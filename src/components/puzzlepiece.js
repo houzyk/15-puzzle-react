@@ -1,13 +1,13 @@
 import React from "react";
 
+// renders individual puzzle pieces
 function PuzzlePiece () {
-
-  const array = [];
-  for (let index = 0; index < 15; index++) array.push(index);
+  const tileArray = [];
+  for (let index = 0; index < 15; index++) tileArray.push(index);
 
   return(
     <>
-      {array.map( (index) =>
+      {tileArray.map( (index) =>
         <div className="puzzle-piece" key={index}>
           {index + 1}
         </div>
