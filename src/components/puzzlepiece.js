@@ -17,13 +17,19 @@ class PuzzlePiece extends Component {
     return (index !== 0) ? "puzzle-piece" : "";
   }
 
+  handleClick (e) {
+    
+  }
+
   render () {
     return(
       <>
         {this.state.tiles.map( (index) =>
           <div
             className={this.handleClass(index)}
-            key={index}>
+            key={index}
+            data-number={index}
+            onClick={this.handleClick}>
               {(index !== 0) ? index : ""}
           </div>
         )}
