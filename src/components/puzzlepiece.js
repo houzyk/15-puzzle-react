@@ -18,7 +18,7 @@ class PuzzlePiece extends Component {
   }
 
   handleClick (e) {
-    
+
   }
 
   render () {
