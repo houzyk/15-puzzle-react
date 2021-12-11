@@ -14,8 +14,20 @@ class Puzzle extends Component {
     this.state = { tiles: tiles }
   }
 
-  gameMove () {
+  moveAllow (tile) {
 
+  }
+
+  gameWin () {
+
+  }
+
+
+  gameMove (e) {
+    // if (this.moveAllow(e.currentTarget)) {
+
+    // }
+    // this.gameWin();
   }
 
   render () {
