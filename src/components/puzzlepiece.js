@@ -1,29 +1,35 @@
-import React from "react";
+import React, { Component } from "react";
 
 // renders individual puzzle pieces
-function PuzzlePiece () {
-  const tiles = [];
-  for (let index = 0; index < 16; index++) {
-    let random = Math.round(Math.random() * 15);
-    while (tiles.includes(random)) (random = Math.round(Math.random() * index));
-    tiles.push(random);
+class PuzzlePiece extends Component {
+  constructor (props) {
+    super(props);
+    const tiles = [];
+    for (let index = 0; index < 16; index++) {
+      let random = Math.round(Math.random() * 15);
+      while (tiles.includes(random)) (random = Math.round(Math.random() * index));
+      tiles.push(random);
+    }
+    this.state = { tiles: tiles }
   }
 
-  const handleClass = (index) => {
+  handleClass (index) {
     return (index !== 0) ? "puzzle-piece" : "";
   }
 
-  return(
-    <>
-      {tiles.map( (index) =>
-        <div
-          className={handleClass(index)}
-          key={index}>
-            {(index !== 0) ? index : ""}
-        </div>
-      )}
-    </>
-  );
+  render () {
+    return(
+      <>
+        {this.state.tiles.map( (index) =>
+          <div
+            className={this.handleClass(index)}
+            key={index}>
+              {(index !== 0) ? index : ""}
+          </div>
+        )}
+      </>
+    );
+  }
 }
 
 export default PuzzlePiece;
