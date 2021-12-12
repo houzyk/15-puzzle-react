@@ -15,19 +15,24 @@ class Puzzle extends Component {
   }
 
   moveAllow (tile) {
-
+    if (tile.classList.contains('puzzle-piece')) {
+      // this.state.tiles.findIndex(t => t == tile.dataset.key);
+    }
+    return false
   }
 
   gameWin () {
-
+    if (this.state.tiles.join() === '1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,0') {
+      alert("You Win!");
+    }
   }
 
 
-  gameMove (e) {
+  gameMove = (e) => {
     // if (this.moveAllow(e.currentTarget)) {
 
     // }
-    // this.gameWin();
+    this.gameWin();
   }
 
   render () {

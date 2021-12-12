@@ -14,6 +14,7 @@ class PuzzlePiece extends Component {
             className={this.handleClass(index)}
             key={index}
             data-number={index}
+            data-key={index}
             onClick={this.props.gameMove}>
               {(index !== 0) ? index : ""}
           </div>
