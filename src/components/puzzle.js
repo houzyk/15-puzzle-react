@@ -19,6 +19,7 @@ class Puzzle extends Component {
       const tileIndex = this.state.tiles.findIndex(t => t == tile.dataset.number);
       const zeroTileIndex = this.state.tiles.findIndex(t => t === 0);
 
+      // Helper Functions
       const handleCornerCase = (tile1, tile2) => {
         return (zeroTileIndex === tileIndex + tile1) || (zeroTileIndex === tileIndex + tile2);
       }
@@ -27,6 +28,7 @@ class Puzzle extends Component {
         return (zeroTileIndex === tileIndex + tile1) || (zeroTileIndex === tileIndex + tile2) || (zeroTileIndex === tileIndex + tile3);
       }
 
+      // Move Checks
       switch (tileIndex) {
         case 0: return handleCornerCase(1, 4); // top left
         case 3: return handleCornerCase(-1, 4); // top right
@@ -37,28 +39,27 @@ class Puzzle extends Component {
             if (tileIndex === 4 || tileIndex === 8) return handleRangeCase(1, -4, 4); // left range
             if (tileIndex === 7 || tileIndex === 11) return handleRangeCase(-1, -4, 4); // right range
             if (tileIndex > 12) return handleRangeCase(-1, -4, 1); // btm range
-          return (zeroTileIndex === tileIndex - 1) || (zeroTileIndex === tileIndex - 4) || (zeroTileIndex === tileIndex + 1) || (zeroTileIndex === tileIndex + 4); //  middle
+          return (zeroTileIndex === tileIndex - 1) || (zeroTileIndex === tileIndex - 4) || (zeroTileIndex === tileIndex + 1) || (zeroTileIndex === tileIndex + 4); //  middle group
       }
     }
     return false
   }
 
-  gameWin () {
+  gameStatus () {
     if (this.state.tiles.join() === '1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,0') {
-      alert("You Win!");
+      setTimeout(() => {
+        alert("You Wins");
+        window.location.reload();
+      }, 300);
     }
   }
 
-
   gameMove = (e) => {
-    this.gameWin();
+    this.gameStatus();
     if (this.moveAllow(e.currentTarget)) {
       // this.setState(
       //   {}
       // );
-      console.log("allowed");
-    } else {
-      console.log("not allowed")
     }
   }
 

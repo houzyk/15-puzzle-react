@@ -2,9 +2,7 @@ import React, { Component } from "react";
 
 // renders individual puzzle pieces
 class PuzzlePiece extends Component {
-  handleClass (index) {
-    return (index !== 0) ? "puzzle-piece" : "";
-  }
+  handleClass (index) { return (index !== 0) ? "puzzle-piece" : ""}
 
   render () {
     return(
