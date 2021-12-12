@@ -16,28 +16,7 @@ class Puzzle extends Component {
 
   moveAllow (tile, tileIndex, zeroTileIndex) {
     if (tile.classList.contains('puzzle-piece')) {
-      // Helper Functions
-      const handleCornerCase = (tile1, tile2) => {
-        return (zeroTileIndex === tileIndex + tile1) || (zeroTileIndex === tileIndex + tile2);
-      }
-
-      const handleRangeCase = (tile1, tile2, tile3) => {
-        return (zeroTileIndex === tileIndex + tile1) || (zeroTileIndex === tileIndex + tile2) || (zeroTileIndex === tileIndex + tile3);
-      }
-
-      // Move Checks
-      switch (tileIndex) {
-        case 0: return handleCornerCase(1, 4); // top left
-        case 3: return handleCornerCase(-1, 4); // top right
-        case 12: return handleCornerCase(1, -4); // btm left
-        case 15: return handleCornerCase(-1, -4); // btm right
-        default:
-            if (tileIndex < 3) return handleRangeCase(-1, 4, 1); // top range
-            if (tileIndex === 4 || tileIndex === 8) return handleRangeCase(1, -4, 4); // left range
-            if (tileIndex === 7 || tileIndex === 11) return handleRangeCase(-1, -4, 4); // right range
-            if (tileIndex > 12) return handleRangeCase(-1, -4, 1); // btm range
-          return (zeroTileIndex === tileIndex - 1) || (zeroTileIndex === tileIndex - 4) || (zeroTileIndex === tileIndex + 1) || (zeroTileIndex === tileIndex + 4); //  middle group
-      }
+      return (zeroTileIndex === tileIndex - 1) || (zeroTileIndex === tileIndex - 4) || (zeroTileIndex === tileIndex + 1) || (zeroTileIndex === tileIndex + 4);
     }
     return false
   }
