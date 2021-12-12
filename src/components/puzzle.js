@@ -1,10 +1,10 @@
 import React, { Component } from "react";
 import PuzzlePiece from "./puzzlepiece";
 
-// renders puzzle board
 class Puzzle extends Component {
   constructor (props) {
     super(props);
+    // renders random puzzle board
     const tiles = [];
     for (let index = 0; index < 16; index++) {
       let random = Math.round(Math.random() * 15);
@@ -14,11 +14,8 @@ class Puzzle extends Component {
     this.state = { tiles: tiles }
   }
 
-  moveAllow (tile) {
+  moveAllow (tile, tileIndex, zeroTileIndex) {
     if (tile.classList.contains('puzzle-piece')) {
-      const tileIndex = this.state.tiles.findIndex(t => t == tile.dataset.number);
-      const zeroTileIndex = this.state.tiles.findIndex(t => t === 0);
-
       // Helper Functions
       const handleCornerCase = (tile1, tile2) => {
         return (zeroTileIndex === tileIndex + tile1) || (zeroTileIndex === tileIndex + tile2);
@@ -56,17 +53,21 @@ class Puzzle extends Component {
 
   gameMove = (e) => {
     this.gameStatus();
-    if (this.moveAllow(e.currentTarget)) {
-      // this.setState(
-      //   {}
-      // );
+    const tileNumber = parseInt(e.currentTarget.dataset.number, 10);
+    const tileIndex = this.state.tiles.findIndex(tile => tile === tileNumber);
+    const zeroTileIndex = this.state.tiles.findIndex(tile => tile === 0);
+    if (this.moveAllow(e.currentTarget, tileIndex, zeroTileIndex)) {
+      const tiles = this.state.tiles;
+      tiles[zeroTileIndex] = tileNumber;
+      tiles[tileIndex] = 0;
+      this.setState({tiles: tiles});
     }
   }
 
   render () {
     return(
       <div className="puzzle">
-        <PuzzlePiece tiles={this.state.tiles} gameMove={this.gameMove}/>
+        <PuzzlePiece tiles={this.state.tiles} gameMove={this.gameMove} />
       </div>
     );
   }
