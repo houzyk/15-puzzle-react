@@ -42,15 +42,6 @@ class Puzzle extends Component {
     return false
   }
 
-  gameStatus (tiles) {
-    if (tiles.join() === '1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,0') {
-      setTimeout(() => {
-        alert("You Wins");
-        window.location.reload();
-      }, 300);
-    }
-  }
-
   gameMove = (e) => {
     const tileNumber = parseInt(e.currentTarget.dataset.number, 10);
     const tileIndex = this.state.tiles.findIndex(tile => tile === tileNumber);
@@ -66,7 +57,7 @@ class Puzzle extends Component {
   render () {
     return(
       <div className="puzzle">
-        <PuzzlePiece tiles={this.state.tiles} gameMove={this.gameMove} gameStatus={this.gameStatus}/>
+        <PuzzlePiece tiles={this.state.tiles} gameMove={this.gameMove} />
       </div>
     );
   }
