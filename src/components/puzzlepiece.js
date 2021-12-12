@@ -5,6 +5,7 @@ class PuzzlePiece extends Component {
   handleClass (index) { return (index !== 0) ? "puzzle-piece" : ""}
 
   render () {
+    this.props.gameStatus(this.props.tiles);
     return(
       <>
         {this.props.tiles.map( (index) =>
