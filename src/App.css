@@ -1,39 +1,11 @@
-/* Google Fonts */
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@700&display=swap');
+/* CSS Partials */
+@import url(./stylesheets/puzzle.css);
 
-/* Game Env */
+/* Env */
 .App {
   height: 100vh;
   width: 100vw;
   display: flex;
   align-items: center;
   justify-content: center;
-}
-
-/* Puzzle Board */
-.puzzle {
-  background-color: #297373;
-  height: 60vh;
-  width: 60vh;
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 1vh;
-  padding: 1vh;
-}
-
-.puzzle-piece {
-  background-color: #F7F7F2;
-  border-radius: 5%;
-  cursor: pointer;
-  transition: all 0.3s;
-  font-size: 2.5rem;
-  color: black;
-  font-family: 'Roboto', sans-serif;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.puzzle-piece:hover {
-  opacity: 0.8;
 }
