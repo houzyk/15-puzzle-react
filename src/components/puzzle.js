@@ -16,7 +16,29 @@ class Puzzle extends Component {
 
   moveAllow (tile) {
     if (tile.classList.contains('puzzle-piece')) {
-      // this.state.tiles.findIndex(t => t == tile.dataset.key);
+      const tileIndex = this.state.tiles.findIndex(t => t == tile.dataset.number);
+      const zeroTileIndex = this.state.tiles.findIndex(t => t === 0);
+
+      const handleCornerCase = (tile1, tile2) => {
+        return (zeroTileIndex === tileIndex + tile1) || (zeroTileIndex === tileIndex + tile2);
+      }
+
+      const handleRangeCase = (tile1, tile2, tile3) => {
+        return (zeroTileIndex === tileIndex + tile1) || (zeroTileIndex === tileIndex + tile2) || (zeroTileIndex === tileIndex + tile3);
+      }
+
+      switch (tileIndex) {
+        case 0: return handleCornerCase(1, 4); // top left
+        case 3: return handleCornerCase(-1, 4); // top right
+        case 12: return handleCornerCase(1, -4); // btm left
+        case 15: return handleCornerCase(-1, -4); // btm right
+        default:
+            if (tileIndex < 3) return handleRangeCase(-1, 4, 1); // top range
+            if (tileIndex === 4 || tileIndex === 8) return handleRangeCase(1, -4, 4); // left range
+            if (tileIndex === 7 || tileIndex === 11) return handleRangeCase(-1, -4, 4); // right range
+            if (tileIndex > 12) return handleRangeCase(-1, -4, 1); // btm range
+          return (zeroTileIndex === tileIndex - 1) || (zeroTileIndex === tileIndex - 4) || (zeroTileIndex === tileIndex + 1) || (zeroTileIndex === tileIndex + 4); //  middle
+      }
     }
     return false
   }
@@ -29,10 +51,15 @@ class Puzzle extends Component {
 
 
   gameMove = (e) => {
-    // if (this.moveAllow(e.currentTarget)) {
-
-    // }
     this.gameWin();
+    if (this.moveAllow(e.currentTarget)) {
+      // this.setState(
+      //   {}
+      // );
+      console.log("allowed");
+    } else {
+      console.log("not allowed")
+    }
   }
 
   render () {
